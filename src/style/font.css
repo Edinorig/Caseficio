@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Dogica";
+    src: url("../../assets/font/dogica.ttf");
+}
+
+*:not(br):not(hr):not(img) {
+    font-family: "Dogica", sans-serif;
+    font-weight: 300;
+}
+
+h1{
+    font-size: 2rem;/* 33-5px */
+}
+
+h2{
+    font-size: 1.5rem;/* 25px */
+}
+
+h3{
+    font-size: 1.2rem;/* 20px */
+}

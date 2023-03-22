@@ -1,0 +1,23 @@
+header{
+    display: flex;
+    justify-content: space-between;
+
+    align-items: baseline;
+
+    margin-top: 1rem;
+}
+
+.logo{
+    color: var(--text-accent);
+}
+
+.nav-bar{
+    display: flex;
+    flex-direction: row-reverse;
+
+    color: var(--text);
+}
+
+.nav-bar-name{
+    margin-left: 2rem;
+}

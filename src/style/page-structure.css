@@ -1,0 +1,10 @@
+body{
+    margin-left: 6.5rem;
+    margin-right: 6.5rem;
+    
+}
+
+a{
+    all: unset;
+    cursor: pointer;
+}
