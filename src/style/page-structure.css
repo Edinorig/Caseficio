@@ -1,10 +1,84 @@
-body{
+body {
     margin-left: 6.5rem;
     margin-right: 6.5rem;
-    
+
 }
 
-a{
+a {
     all: unset;
     cursor: pointer;
+}
+
+
+/*----------------------------INPUTS----------------------------*/
+
+.input-data {
+    background: var(--background);
+    color: var(--text-accent);
+
+    border: 1px solid var(--background-accent);
+    border-radius: 5px;
+
+    width: 18.5rem;
+    height: 3.5rem;
+
+    padding-left: 1rem;
+
+    cursor: pointer;
+}
+
+.wrapper-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-bottom: 0.5rem;
+}
+/*----------------------------BUTTONS----------------------------*/
+
+.wrapper-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit-btn {
+    background: var(--background-accent);
+    cursor: pointer;
+
+    width: 19.5rem;
+    height: 3.5rem;
+
+    border-radius: 10px;
+    border: 1px solid var(--background-accent);
+}
+
+.submit-txt{
+    color: var(--text-extend);
+}
+
+.cancel-btn{
+    background: var(--background);
+    color: var(--text);
+
+    cursor: pointer;
+
+    width: 19.5rem;
+    height: 3.5rem;
+
+    border-radius: 10px;
+    border: 1px solid var(--background-extend);
+}
+
+.submit-btn:hover {
+    background: var(--background);
+    color: var(--text-accent);
+    border: 1px solid var(--background-accent);
+}
+
+.cancel-btn:hover {
+    background: var(--background-extend);
+    color: var(--text-extend);
+    border: 1px solid var(--background-extend);
 }

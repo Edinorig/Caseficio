@@ -1,0 +1,32 @@
+body {
+    background: var(--background);
+}
+
+#container {
+    height: 50vh;
+    width: 52%;
+    display: flex;
+    margin-top: 5rem;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.nav-bar-input-data {
+    display: flex;
+    justify-content: space-between;
+    width: 20rem;
+
+    color: var(--text);
+}
+
+.name-section{
+    margin-top: 2rem;
+}
+
+.selected-section{
+    background:  var(--background-accent);
+    border-radius: 5px;
+    height: 0.1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}

@@ -8,6 +8,10 @@
     font-weight: 300;
 }
 
+h1,h2,h3,h4{
+    margin: 0;
+}
+
 h1{
     font-size: 2rem;/* 33-5px */
 }
@@ -19,3 +23,15 @@ h2{
 h3{
     font-size: 1.2rem;/* 20px */
 }
+
+h4{
+    font-size: 1rem;/* 16px */
+}
+
+.name-input{
+    color: var(--text);
+}
+
+/* .cancel-txt{
+    color: var(--text);
+} */

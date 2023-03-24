@@ -1,3 +1,8 @@
+.img-wrapper {
+    position: fixed;
+    z-index: -1;
+  }
+
 .cheese-1{
     position: fixed;
 
