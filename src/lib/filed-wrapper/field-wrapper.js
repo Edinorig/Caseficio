@@ -35,13 +35,13 @@ class Field {
     }
 
     initEventListeners() {
-        console.log(this.elements.milkElements);
+
     }
 
     initTemplate() {
         const parser = new DOMParser();
         const templateString = `
-            <div class="wrapper-container-field">
+            <div class="wrapper-container-field ${this.propName}">
                 ${this.initEntry()}
             </div>
         `;

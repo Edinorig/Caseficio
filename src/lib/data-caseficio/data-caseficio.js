@@ -1,6 +1,6 @@
 import Field from "../filed-wrapper/field-wrapper.js";
 class DataCaseficio {
-    constructor(parent, props,propsCheese) {
+    constructor(parent, props, propsCheese) {
         this.parentElement = parent;
         this.props = props;
         this.propsCheese = propsCheese;
@@ -16,7 +16,11 @@ class DataCaseficio {
         this.initField();
     }
 
-    destroy() {
+    deleteFields() {
+        const elements = document.querySelectorAll(`.wrapper-container-field`);
+        elements.forEach(element => {
+            element.remove();
+        });
     }
 
     initElements() {
@@ -26,6 +30,9 @@ class DataCaseficio {
             inputComponent: this.template.querySelector('.wrapper-manage-data'),
             milkSection: this.template.querySelector('#milk'),
             cheeseSection: this.template.querySelector('#cheese'),
+            selectedSection: this.template.querySelector('.selected-section'),
+            milkSelectedSection: this.template.querySelector('#milk>div.selected-section'),
+            cheeseSelectedSection: this.template.querySelector('#cheese>div.selected-section'),
         }
 
 
@@ -33,10 +40,22 @@ class DataCaseficio {
     }
 
     initEventListeners() {
-        this.elements.cheeseSection.addEventListener('click',e=>{
-            console.log("Success");
+        this.elements.selectedSection.classList.toggle('display-none', false);
+
+        this.elements.cheeseSection.addEventListener('click', e => {
+            this.deleteFields();
             this.initFieldCheese();
+
+            this.elements.milkSelectedSection.classList.toggle('display-none', true);
+            this.elements.cheeseSelectedSection.classList.toggle('display-none', false);
         })
+        this.elements.milkSection.addEventListener('click', () => {
+            this.deleteFields();
+            this.initField();
+
+            this.elements.milkSelectedSection.classList.toggle('display-none', false);
+            this.elements.cheeseSelectedSection.classList.toggle('display-none', true);
+        });
     }
 
     initTemplate() {
@@ -44,12 +63,12 @@ class DataCaseficio {
         const templateString = `
         <div class="main-content">
             <div class="nav-bar-input-data">
-                <div class="name-section" >
-                    <H3 id="milk">Latte</H3>
-                    <div class="selected-section"></div>
+                <div class="name-section" id="milk">
+                    <H3>Latte</H3>
+                    <div class="selected-section"> </div>
                 </div>
-                <div class="name-section">
-                    <H3 id="cheese">Formaggio</H3>
+                <div class="name-section" id="cheese">
+                    <H3 >Formaggio</H3>
                     <div class="selected-section display-none"></div>
                 </div>
             </div>
