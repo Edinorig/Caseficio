@@ -18,8 +18,6 @@ class Header {
     initElements() {
         this.template = this.initTemplate();
 
-        console.log(this.template);
-
         this.parentElement.appendChild(this.template);
     }
 

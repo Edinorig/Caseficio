@@ -9,8 +9,28 @@ a {
     cursor: pointer;
 }
 
+#cheese,
+#milk{
+    cursor: pointer;
+}
+
+/*----------------------------UTILS----------------------------*/
+.display-none{
+    display: none !important;
+}
 
 /*----------------------------INPUTS----------------------------*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 .input-data {
     background: var(--background);
@@ -27,6 +47,21 @@ a {
     cursor: pointer;
 }
 
+.input-data-select{
+    background: var(--background);
+    color: var(--text-accent);
+
+    border: 1px solid var(--background-accent);
+    border-radius: 5px;
+
+    width: 19.8rem;
+    height: 3.5rem;
+
+    padding-left: 1rem;
+
+    cursor: pointer;
+}
+
 .wrapper-data {
     display: flex;
     align-items: center;
@@ -35,6 +70,19 @@ a {
     width: 100%;
 
     margin-bottom: 0.5rem;
+}
+
+.show-data{
+    background: var(--background-accent);
+    color: var(--text-extend);
+
+    border: 1px solid var(--background-accent);
+    border-radius: 5px;
+
+    width: 18.5rem;
+    height: 3.5rem;
+
+    padding-left: 1rem;
 }
 /*----------------------------BUTTONS----------------------------*/
 

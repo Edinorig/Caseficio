@@ -2,7 +2,7 @@ const loginInput = {
     name: '',
     list:[
         {
-            title: 'Login',
+            title: '',
             inputType: 'text',
             value: '',
             maxLenght: '',
@@ -12,7 +12,7 @@ const loginInput = {
             validate: '',
         },
         {
-            title: 'Pass',
+            title: '',
             inputType: 'pass',
             value: '',
             maxLenght: '',
@@ -25,29 +25,101 @@ const loginInput = {
 }
 
 const milkInputData = {
-    name: '',
+    name: 'Milk',
     list:[
         {
-            title: 'Login',
-            inputType: 'text',
+            title: 'Latte estratta',
+            inputType: 'number',
             value: '',
             maxLenght: '',
             required: 'required',
             className: 'input-data',
-            placeHolder: 'login',
+            identificator: 'milk-elements',
+            hideDisplay: '',
+            placeHolder: '',
             validate: '',
         },
         {
-            title: 'Pass',
-            inputType: 'pass',
+            title: 'Latte lavorato',
+            inputType: 'number',
             value: '',
             maxLenght: '',
             required: 'required',
-            className: 'input-data',
-            placeHolder: 'pass',
+            className: 'input-data ',
+            identificator: 'milk-elements',
+            hideDisplay: '',
+            placeHolder: '',
             validate: '',
         }
     ]
 }
 
-export {loginInput}
+const cheeseInputData = {
+    name: 'Cheese',
+    list:[
+        {
+            title: 'Quantita',
+            inputType: 'number',
+            value: '',
+            maxLenght: '',
+            required: 'required',
+            className: 'input-data',
+            identificator: 'cheese-elements',
+            hideDisplay: '',
+            placeHolder: '',
+            validate: '',
+        },
+        {
+            title: 'Staggionatura',
+            inputType: 'selector',
+            value: ['Cheese','latte','moloko'],
+            option: '2',
+            maxLenght: '',
+            required: 'required',
+            className: 'input-data-select',
+            identificator: 'cheese-elements',
+            hideDisplay: '',
+            placeHolder: '',
+            validate: '',
+        },
+        {
+            title: 'Scelta',
+            inputType: 'selector',
+            value: ['Cheese','latte','moloko'],
+            option: '1',
+            maxLenght: '',
+            required: 'required',
+            className: 'input-data-select',
+            identificator: 'cheese-elements',
+            hideDisplay: '',
+            placeHolder: '',
+            validate: '',
+        },
+        {
+            title: 'Data',
+            inputType: 'date',
+            value: '',
+            maxLenght: '',
+            required: 'required',
+            className: 'input-data',
+            identificator: 'cheese-elements',
+            hideDisplay: '',
+            placeHolder: '',
+            validate: '',
+        },
+        {
+            title: 'Codice',
+            inputType: 'text',
+            value: '',
+            maxLenght: '',
+            required: 'readonly',
+            className: 'show-data',
+            identificator: 'cheese-elements',
+            hideDisplay: '',
+            placeHolder: '',
+            validate: '',
+        },
+    ]
+}
+
+export {loginInput,cheeseInputData,milkInputData}
