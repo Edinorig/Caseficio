@@ -3,8 +3,13 @@ body {
 }
 
 #container {
-    height: 50vh;
+    height: 60vh;
     width: 52%;
+}
+
+.main-content{
+    height: 100%;
+    width: 100%;
     display: flex;
     margin-top: 5rem;
     justify-content: space-between;

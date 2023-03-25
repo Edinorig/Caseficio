@@ -50,12 +50,8 @@ class LogWrapper {
     }
 
     initField(){
-        console.log(this.parentElement);
-        console.log(this.template);
-        console.log(this.elements.inputComponent);
         this.props.forEach(props => {
             const fieldWrapper = new Field (this.elements.inputComponent, props)
-            console.log(props);
             fieldWrapper.init();
             const el = fieldWrapper.render();
             this.elements.inputComponent.appendChild(el);
