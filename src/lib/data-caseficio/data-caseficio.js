@@ -8,6 +8,7 @@ class DataCaseficio {
         this.template;
 
         this.listFileds = [];
+        this.listCheeseFields = [];
     }
 
     init() {
@@ -33,6 +34,7 @@ class DataCaseficio {
             selectedSection: this.template.querySelector('.selected-section'),
             milkSelectedSection: this.template.querySelector('#milk>div.selected-section'),
             cheeseSelectedSection: this.template.querySelector('#cheese>div.selected-section'),
+            submitBtn: this.template.querySelector('.submit-btn'),
         }
 
 
@@ -46,6 +48,8 @@ class DataCaseficio {
             this.deleteFields();
             this.initFieldCheese();
 
+            this.listFileds = [];
+
             this.elements.milkSelectedSection.classList.toggle('display-none', true);
             this.elements.cheeseSelectedSection.classList.toggle('display-none', false);
         })
@@ -53,9 +57,20 @@ class DataCaseficio {
             this.deleteFields();
             this.initField();
 
+            this.listCheeseFields = [];
+
             this.elements.milkSelectedSection.classList.toggle('display-none', false);
             this.elements.cheeseSelectedSection.classList.toggle('display-none', true);
         });
+
+        this.elements.submitBtn.addEventListener('click', (e) => this.handlerApply(e));
+    }
+
+    handlerApply() {
+        this.parentElement.dispatchEvent(new CustomEvent('apply-insert-data', {
+            bubbles: true,
+        },
+        ));
     }
 
     initTemplate() {
@@ -94,7 +109,9 @@ class DataCaseficio {
             fieldWrapper.init();
             const el = fieldWrapper.render();
             this.elements.inputComponent.appendChild(el);
+
             this.listFileds.push(fieldWrapper);
+            
         });
     }
     initFieldCheese() {
@@ -103,8 +120,28 @@ class DataCaseficio {
             fieldWrapper.init();
             const el = fieldWrapper.render();
             this.elements.inputComponent.appendChild(el);
-            this.listFileds.push(fieldWrapper);
+
+            this.listCheeseFields.push(fieldWrapper);
+            
         });
+    }
+
+    isValid() {
+        const isValidArray = [];
+
+
+        this.listFileds.forEach(filed => {
+            console.log(filed);
+            isValidArray.push(filed.isValid);
+        });
+
+        console.log( this.listCheeseFields);
+        this.listCheeseFields.forEach(field => {
+            console.log(field);
+            isValidArray.push(field.isValid);
+        });
+
+        return isValidArray;
     }
 }
 

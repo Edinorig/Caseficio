@@ -28,3 +28,13 @@ header.init();
 
 const dataCaseficio = new DataCaseficio (wrapper.mainContent, milkInputData.list,cheeseInputData.list);
 dataCaseficio.init();
+
+wrapper.mainContent.addEventListener('apply-insert-data', (e) => handlerApply(e));
+
+const handlerApply = (e) => {
+    console.log("great succes");
+    console.table(dataCaseficio.isValid());
+};
+
+localStorage.setItem('permision','Denys');
+console.log(localStorage.getItem('permision'));

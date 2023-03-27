@@ -8,6 +8,7 @@ class Field {
         this.template;
         this.elements = {};
 
+        this.isValid = props.value !== '';
     }
 
     init() {
@@ -21,10 +22,6 @@ class Field {
 
         this.elements = {
             dataEntry: this.template.querySelector('.data-entry'),
-            milkSection: document.querySelector('#milk'),
-            milkElements: this.template.querySelector('.milk-elements'),
-            cheeseSection: document.querySelector('#cheese'),
-            cheeseElements: this.template.querySelectorAll('.cheese-elements'),
         };
 
         this.initAttributes();
@@ -35,7 +32,23 @@ class Field {
     }
 
     initEventListeners() {
+        const { dataEntry } = this.elements;
 
+
+        dataEntry.addEventListener('input', () => {
+
+            const isValid = this.props.validate(dataEntry.value);
+
+            console.log(isValid);
+
+            dataEntry.classList.toggle('data-wrong', !isValid);
+            dataEntry.classList.toggle('data-valid', isValid);
+
+            this.isValid = isValid;
+
+            this.props.value = dataEntry.value;
+
+        });
     }
 
     initTemplate() {

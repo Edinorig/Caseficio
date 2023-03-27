@@ -1,6 +1,6 @@
 const loginInput = {
     name: '',
-    list:[
+    list: [
         {
             title: '',
             inputType: 'text',
@@ -9,7 +9,7 @@ const loginInput = {
             required: 'required',
             className: 'input-data',
             placeHolder: 'login',
-            validate: '',
+            validate: (value) => validateText(value),
         },
         {
             title: '',
@@ -19,14 +19,14 @@ const loginInput = {
             required: 'required',
             className: 'input-data',
             placeHolder: 'pass',
-            validate: '',
+            validate: (value) => validateText(value),
         }
     ]
 }
 
 const milkInputData = {
     name: 'Milk',
-    list:[
+    list: [
         {
             title: 'Latte estratta',
             inputType: 'number',
@@ -37,7 +37,7 @@ const milkInputData = {
             identificator: 'milk-elements',
             hideDisplay: '',
             placeHolder: '',
-            validate: '',
+            validate: (value) => validateNumber(value),
         },
         {
             title: 'Latte lavorato',
@@ -49,30 +49,30 @@ const milkInputData = {
             identificator: 'milk-elements',
             hideDisplay: '',
             placeHolder: '',
-            validate: '',
+            validate: (value) => validateNumber(value),
         }
     ]
 }
 
 const cheeseInputData = {
     name: 'Cheese',
-    list:[
+    list: [
         {
             title: 'Quantita',
             inputType: 'number',
-            value: '',
+            value: '12',
             maxLenght: '',
             required: 'required',
             className: 'input-data',
             identificator: 'cheese-elements',
             hideDisplay: '',
             placeHolder: '',
-            validate: '',
+            validate: (value) => validateNumber(value),
         },
         {
             title: 'Staggionatura',
             inputType: 'selector',
-            value: ['Cheese','latte','moloko'],
+            value: ['Cheese', 'latte', 'moloko'],
             option: '2',
             maxLenght: '',
             required: 'required',
@@ -80,12 +80,12 @@ const cheeseInputData = {
             identificator: 'cheese-elements',
             hideDisplay: '',
             placeHolder: '',
-            validate: '',
+            validate: (value) => { return true }, 
         },
         {
             title: 'Scelta',
             inputType: 'selector',
-            value: ['Cheese','latte','moloko'],
+            value: ['Cheese', 'latte', 'moloko'],
             option: '1',
             maxLenght: '',
             required: 'required',
@@ -93,33 +93,54 @@ const cheeseInputData = {
             identificator: 'cheese-elements',
             hideDisplay: '',
             placeHolder: '',
-            validate: '',
+            validate: (value) => { return true }, 
         },
         {
             title: 'Data',
             inputType: 'date',
-            value: '',
+            value: '3211f',
             maxLenght: '',
             required: 'required',
             className: 'input-data',
             identificator: 'cheese-elements',
             hideDisplay: '',
             placeHolder: '',
-            validate: '',
+            validate: (value) => { return true },
         },
         {
             title: 'Codice',
             inputType: 'text',
-            value: '',
+            value: '123123',
             maxLenght: '',
             required: 'readonly',
             className: 'show-data',
             identificator: 'cheese-elements',
             hideDisplay: '',
             placeHolder: '',
-            validate: '',
+            validate: (value) => { return true },
         },
     ]
 }
 
-export {loginInput,cheeseInputData,milkInputData}
+
+
+const validateText = (text) => {
+    const textToValidate = text.toString().replace(/^\s+/, '');
+
+    if (textToValidate.length === 0) {
+        return false;
+    }
+
+    if (/[^a-zA-Z\s]/.test(textToValidate)) {
+        return false;
+    }
+
+    return true;
+}
+
+function validateNumber(input) {
+    return /^[0-9]+$/.test(input);
+}
+
+
+export { loginInput, cheeseInputData, milkInputData }
