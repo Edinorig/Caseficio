@@ -1,4 +1,4 @@
-header{
+header {
     display: flex;
     justify-content: space-between;
 
@@ -7,17 +7,30 @@ header{
     margin-top: 2rem;
 }
 
-.logo{
+.logo {
     color: var(--text-accent);
 }
 
-.nav-bar{
+.nav-bar {
     display: flex;
     flex-direction: row-reverse;
 
     color: var(--text);
 }
 
-.nav-bar-name{
-    margin-left: 2rem;
+a>h3:hover {
+    color: var(--text-accent);
+}
+
+.log-in-section,
+.log-out-section,
+.casefici-section,
+.forma-section,
+.statistica-section,
+.input-data-section {
+    margin-left: 1rem;
+}
+
+h3::placeholder {
+    color: var(--text-accent);
 }

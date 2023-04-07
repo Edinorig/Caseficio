@@ -39,8 +39,6 @@ class Field {
 
             const isValid = this.props.validate(dataEntry.value);
 
-            console.log(isValid);
-
             dataEntry.classList.toggle('data-wrong', !isValid);
             dataEntry.classList.toggle('data-valid', isValid);
 
@@ -48,7 +46,27 @@ class Field {
 
             this.props.value = dataEntry.value;
 
+            console.log(this.props.value);
         });
+
+        if (this.props.inputType === 'selector') {
+            const selectElement = this.template.querySelector('select');
+            selectElement.addEventListener('change', () => {
+                const isValid = this.props.validate(selectElement.value);
+
+                console.log(isValid);
+
+                selectElement.classList.toggle('data-wrong', !isValid);
+                selectElement.classList.toggle('data-valid', isValid);
+
+                this.isValid = isValid;
+
+                this.props.value = selectElement.value;
+
+                console.log(this.props.value);
+            });
+        }
+        
     }
 
     initTemplate() {
@@ -76,7 +94,7 @@ class Field {
         if (inputType === 'selector') {
             return `
             <div class="wrapper-data  ${hideDisplay}">
-                <div class="name-input data-entry  ${identificator}"> ${title} </div>
+                <div class="name-input ${identificator}"> ${title} </div>
                 ${this.initSelect()}
             </div>
         `;
@@ -88,7 +106,7 @@ class Field {
     initSelect() {
         return `
         <select class="${this.props.className} " ${this.props.required} required>
-            ${createOptions(this.props.value, this.props.option)}
+            ${createOptions(this.props.option, this.props.value)}
         </select>
         `
     }

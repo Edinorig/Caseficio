@@ -1,0 +1,17 @@
+body {
+    background: var(--background);
+}
+
+.main-content{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    margin-top: 5rem;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.show-data-caseficio {
+    height: 60vh;
+    width: 68%;
+}

@@ -4,40 +4,55 @@ body {
 
 }
 
+
+button,
+input,
 a {
     all: unset;
     cursor: pointer;
 }
 
 #cheese,
-#milk{
+#milk {
     cursor: pointer;
 }
 
 /*----------------------------UTILS----------------------------*/
-.display-none{
+.display-none {
     display: none !important;
 }
 
 /*----------------------------INPUTS----------------------------*/
 
-.data-wrong{
+.data-wrong {
     border: 1px solid red !important;
 }
 
-.data-valid{
+.data-valid {
     border: 1px solid var(--background-accent) !important;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.search::placeholder {
+    color: var(--background);
+  }
+
+
+
+input[type=date] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .input-data {
@@ -55,7 +70,7 @@ input[type=number] {
     cursor: pointer;
 }
 
-.input-data-select{
+.input-data-select {
     background: var(--background);
     color: var(--text-accent);
 
@@ -80,7 +95,7 @@ input[type=number] {
     margin-bottom: 0.5rem;
 }
 
-.show-data{
+.show-data {
     background: var(--background-accent);
     color: var(--text-extend);
 
@@ -91,7 +106,10 @@ input[type=number] {
     height: 3.5rem;
 
     padding-left: 1rem;
+
+    font-size: 0.7rem;
 }
+
 /*----------------------------BUTTONS----------------------------*/
 
 .wrapper-btns {
@@ -106,15 +124,19 @@ input[type=number] {
     width: 19.5rem;
     height: 3.5rem;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border-radius: 10px;
     border: 1px solid var(--background-accent);
 }
 
-.submit-txt{
+.submit-txt {
     color: var(--text-extend);
 }
 
-.cancel-btn{
+.cancel-btn {
     background: var(--background);
     color: var(--text);
 
@@ -122,6 +144,10 @@ input[type=number] {
 
     width: 19.5rem;
     height: 3.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border-radius: 10px;
     border: 1px solid var(--background-extend);
@@ -138,3 +164,9 @@ input[type=number] {
     color: var(--text-extend);
     border: 1px solid var(--background-extend);
 }
+
+.find::placeholder{
+    background-color: aliceblue !important;
+}
+
+/* ---------------------------------------Hovers----------------------------------------- */

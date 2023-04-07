@@ -1,8 +1,8 @@
 import Field from "../filed-wrapper/field-wrapper.js";
 class DataCaseficio {
-    constructor(parent, props, propsCheese) {
+    constructor(parent, propsMilk, propsCheese) {
         this.parentElement = parent;
-        this.props = props;
+        this.propsMilk = propsMilk;
         this.propsCheese = propsCheese;
 
         this.template;
@@ -37,7 +37,6 @@ class DataCaseficio {
             submitBtn: this.template.querySelector('.submit-btn'),
         }
 
-
         this.parentElement.appendChild(this.template);
     }
 
@@ -50,6 +49,13 @@ class DataCaseficio {
 
             this.listFileds = [];
 
+            this.propsMilk.forEach(e => {
+                e.value = '';
+                console.log(e.value);
+            })
+
+            console.log(this.propsMilk);
+
             this.elements.milkSelectedSection.classList.toggle('display-none', true);
             this.elements.cheeseSelectedSection.classList.toggle('display-none', false);
         })
@@ -58,6 +64,13 @@ class DataCaseficio {
             this.initField();
 
             this.listCheeseFields = [];
+
+            this.propsCheese.forEach(e => {
+                e.value = '';
+                console.log(e.value);
+            })
+
+            console.log(this.propsCheese);
 
             this.elements.milkSelectedSection.classList.toggle('display-none', false);
             this.elements.cheeseSelectedSection.classList.toggle('display-none', true);
@@ -104,25 +117,25 @@ class DataCaseficio {
     }
 
     initField() {
-        this.props.forEach(props => {
-            const fieldWrapper = new Field(this.elements.inputComponent, props)
+        this.propsMilk.forEach(propsMilk => {
+            const fieldWrapper = new Field(this.elements.inputComponent, propsMilk)
             fieldWrapper.init();
             const el = fieldWrapper.render();
             this.elements.inputComponent.appendChild(el);
 
             this.listFileds.push(fieldWrapper);
-            
+
         });
     }
     initFieldCheese() {
-        this.propsCheese.forEach(props => {
-            const fieldWrapper = new Field(this.elements.inputComponent, props)
+        this.propsCheese.forEach(propsMilk => {
+            const fieldWrapper = new Field(this.elements.inputComponent, propsMilk)
             fieldWrapper.init();
             const el = fieldWrapper.render();
             this.elements.inputComponent.appendChild(el);
 
             this.listCheeseFields.push(fieldWrapper);
-            
+
         });
     }
 
@@ -135,7 +148,7 @@ class DataCaseficio {
             isValidArray.push(filed.isValid);
         });
 
-        console.log( this.listCheeseFields);
+        console.log(this.listCheeseFields);
         this.listCheeseFields.forEach(field => {
             console.log(field);
             isValidArray.push(field.isValid);

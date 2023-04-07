@@ -7,6 +7,10 @@ body {
     width: 52%;
 }
 
+.name-section>h3:hover{
+    color: var(--text-accent);
+}
+
 .main-content{
     height: 100%;
     width: 100%;

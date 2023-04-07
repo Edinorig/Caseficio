@@ -24,15 +24,22 @@ class LogWrapper {
 
         this.elements = {
             inputComponent: this.template.querySelector('.input-wrapper'),
+            submitBtn: this.template.querySelector('.submit-btn')
         }
         
-
         this.parentElement.appendChild(this.template);
     }
 
     initEventListeners() {
+        this.elements.submitBtn.addEventListener('click', (e) => this.handlerApply(e));
     }
 
+    handlerApply() {
+        this.parentElement.dispatchEvent(new CustomEvent('apply-login-data', {
+            bubbles: true,
+        },
+        ));
+    }
     initTemplate() {
         const parser = new DOMParser();
         const templateString =`
@@ -57,6 +64,17 @@ class LogWrapper {
             this.elements.inputComponent.appendChild(el);
             this.listFileds.push(fieldWrapper);
         }); 
+    }
+
+    isValid() {
+        const isValidArray = [];
+
+
+        this.listFileds.forEach(filed => {
+            console.log(filed);
+            isValidArray.push(filed.isValid);
+        });
+        return isValidArray;
     }
 }
 
