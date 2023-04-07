@@ -34,20 +34,24 @@ class Field {
     initEventListeners() {
         const { dataEntry } = this.elements;
 
+        if (dataEntry) {
+            dataEntry.addEventListener('input', () => {
 
-        dataEntry.addEventListener('input', () => {
+                const isValid = this.props.validate(dataEntry.value);
 
-            const isValid = this.props.validate(dataEntry.value);
+                dataEntry.classList.toggle('data-wrong', !isValid);
+                dataEntry.classList.toggle('data-valid', isValid);
 
-            dataEntry.classList.toggle('data-wrong', !isValid);
-            dataEntry.classList.toggle('data-valid', isValid);
+                this.isValid = isValid;
 
-            this.isValid = isValid;
+                this.props.value = dataEntry.value;
 
-            this.props.value = dataEntry.value;
+                console.log(this.props.value);
+            });
+        }
 
-            console.log(this.props.value);
-        });
+
+
 
         if (this.props.inputType === 'selector') {
             const selectElement = this.template.querySelector('select');
@@ -66,7 +70,7 @@ class Field {
                 console.log(this.props.value);
             });
         }
-        
+
     }
 
     initTemplate() {

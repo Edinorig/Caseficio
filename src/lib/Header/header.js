@@ -100,7 +100,7 @@ class Header {
                     <div class="selected-section display-none"></div>
                 </div>
                 <div class="forma-section display-none">
-                    <a class="nav-bar-name "  href="">
+                    <a class="nav-bar-name "  href="./forma-page/index.html">
                         <h3>Forma</h3>
                     </a>
                     <div class="selected-section display-none"></div>

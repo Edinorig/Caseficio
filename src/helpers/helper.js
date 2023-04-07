@@ -23,6 +23,28 @@ async function getStaggionaturaType() {
     return stagginatturaTypes;
 }
 
+async function getAcquirenteType() {
+    const acquirenteType = [];
+
+    await UtilFetch.postData('../../utils/php/getAcquirenteType.php', {})
+        .then(fetchResponse => {
+            const { status, data } = fetchResponse;
+            if (status >= 200 && status < 300) {
+                data.forEach(props => {
+                    acquirenteType.push(props.tipo);
+                });
+
+            } else {
+
+                console.error(fetchResponse);
+            }
+        });
+
+    console.log(acquirenteType);
+
+    return acquirenteType;
+}
+
 async function getCaseficioData() {
     const dataCaseficio = [];
 
@@ -148,32 +170,6 @@ const loginInput = {
     ]
 }
 
-const listaCasefici = {
-    name: '',
-    list: [
-        {
-            title: 'Nome caseficio',
-            inputType: 'text',
-            value: '',
-            maxLenght: '',
-            required: 'readonly',
-            className: 'input-data',
-            placeHolder: 'login',
-            validate: (value) => { return true },
-        },
-        {
-            title: 'Provincia',
-            inputType: 'text',
-            value: '',
-            maxLenght: '',
-            required: 'readonly',
-            className: 'input-data',
-            placeHolder: 'pass',
-            validate: (value) => { return true },
-        }
-    ]
-}
-
 const sellForma = {
     name: '',
     list: [
@@ -183,18 +179,19 @@ const sellForma = {
             value: '',
             maxLenght: '',
             required: 'readonly',
-            className: 'input-data',
+            className: 'show-data data-entry',
             placeHolder: 'login',
             validate: (value) => { return true },
         },
         {
             title: 'Formaggio scelta',
-            inputType: 'text',
+            inputType: 'selector',
             value: '',
+            option: await getSceltaType(),
             maxLenght: '',
-            required: 'readonly',
-            className: 'input-data',
-            placeHolder: 'pass',
+            required: 'required',
+            className: 'input-data-select data-entry',
+            placeHolder: '',
             validate: (value) => { return true },
         },
         {
@@ -202,8 +199,8 @@ const sellForma = {
             inputType: 'text',
             value: '',
             maxLenght: '',
-            required: 'readonly',
-            className: 'input-data',
+            required: 'required',
+            className: 'input-data data-entry',
             placeHolder: 'pass',
             validate: (value) => { return true },
         },
@@ -212,20 +209,21 @@ const sellForma = {
             inputType: 'text',
             value: '',
             maxLenght: '',
-            required: 'readonly',
-            className: 'input-data',
+            required: 'required',
+            className: 'input-data data-entry',
             placeHolder: 'pass',
             validate: (value) => { return true },
         },
         {
             title: 'Tipo acquirente',
-            inputType: 'text',
-            value: '',
-            maxLenght: '',
-            required: 'readonly',
-            className: 'input-data',
             placeHolder: 'pass',
             validate: (value) => { return true },
+            inputType: 'selector',
+            value: '',
+            option: await getAcquirenteType(),
+            maxLenght: '',
+            required: 'required',
+            className: 'input-data-select data-entry',
         }
     ]
 }
@@ -421,9 +419,6 @@ const dataCaseficio = {
     ]
 }
 
-dataCaseficio.list.forEach(e=>{
-    console.log(e);
-})
 
 
 
@@ -454,4 +449,4 @@ const validateSelect = selectElement => {
 };
 
 
-export { loginInput, cheeseInputData, milkInputData, dataCaseficio }
+export { loginInput, cheeseInputData, milkInputData, dataCaseficio,sellForma }

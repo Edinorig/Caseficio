@@ -1,0 +1,36 @@
+body {
+    background: var(--background);
+}
+
+.list-wrapper {
+    width: 23rem;
+}
+
+.consten-wrapper {
+    margin-top: 5rem;
+}
+
+.list-text {
+    margin-bottom: 1rem;
+}
+
+.list-text>h3 {
+    color: var(--text);
+}
+
+.consten-wrapper {
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.forma-wrapper {
+    width: 40rem;
+}
+
+.wrapper-btn {
+
+    display: flex;
+    justify-content: end;
+
+}

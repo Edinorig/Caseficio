@@ -1,7 +1,10 @@
+import Field from "../filed-wrapper/field-wrapper.js";
+import { createCookie } from "../../utils/util-cookie.js";
+
 class CaseficioList {
-    constructor(parent, propsCaseficio, propsForma) {
+    constructor(parent, props, propsForma) {
         this.parentElement = parent;
-        this.propsCaseficio = propsCaseficio;
+        this.props = props;
         this.propsForma = propsForma;
 
         this.template;
@@ -10,16 +13,17 @@ class CaseficioList {
     }
 
     init() {
-        let isProps = this.propsCaseficio ? true : false;
-
-        if (isProps) {
-            this.initElements();
-            this.initEventListeners();
-        }
+        this.initElements();
+        this.initEventListeners();
     }
 
     initElements() {
         this.template = this.initTemplate();
+       
+
+        this.elements = {
+            rowCaseficio: this.template.querySelectorAll('.row-data'),
+        }
 
         this.parentElement.appendChild(this.template);
     }
@@ -31,13 +35,24 @@ class CaseficioList {
     }
 
     initEventListeners() {
-
+        this.elements.rowCaseficio.forEach(element => {
+            element.addEventListener('click', (e) => {
+                createCookie("SelectedCaseficioForma", element.getAttribute("uidcaseficio"));
+                this.handlerApply(e);
+            })
+        })
     }
 
+    handlerApply() {
+        this.parentElement.dispatchEvent(new CustomEvent('apply-forma-caseficio', {
+            bubbles: true,
+        },
+        ));
+    }
     initTemplate() {
         const parser = new DOMParser();
         let templateString = '';
-        if (propsForma) {
+        if (this.propsForma) {
             templateString = `
             <div class="table">
                 <div class="row header">
@@ -76,23 +91,24 @@ class CaseficioList {
         return templateElement.documentElement.querySelector("body > div");
     }
 
+
     initField() {
 
-        console.log(this.propsCaseficio);
+        console.log(this.props);
 
         let fieldString = '';
-        this.propsCaseficio.forEach(element => {
+        this.props.forEach(element => {
             console.log(element);
-            if (propsForma) {
+            if (this.propsForma) {
                 fieldString += `
-                <div class="row-data" uidCaseficio="${element.uid}">
+                <div class="row-data" uidcaseficio="${element.uid}">
                   <div class="cell">${element.nome}</div>
                   <div class="divide-line-list-casefici"></div>
                   <div class="cell">${element.provincia}</div>
                   </div>`;
             } else {
                 fieldString += `
-          <div class="row-data" uidCaseficio="${element.uid}">
+          <div class="row-data" ="${element.uid}">
             <div class="cell">${element.nome}</div>
             <div class="divide-line-list-casefici"></div>
             <div class="cell">${element.provincia}</div>

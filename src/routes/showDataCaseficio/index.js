@@ -25,4 +25,6 @@ logo.addEventListener('click', e => {
 })
 
 const loginBtn = document.querySelector('.log-in-section>a');
+const forma = document.querySelector('.forma-section>a');
+forma.setAttribute("href", "../forma-page/index.html");
 loginBtn.setAttribute("href", "../login-page/index.html");

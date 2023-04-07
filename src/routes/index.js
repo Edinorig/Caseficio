@@ -27,6 +27,9 @@ if (checkCookieExists('User')) {
 const header = new Header(wrapper.header, props.header);
 header.init();
 
+const logOut = document.querySelector('.nav-bar-name-logout ');
+logOut.setAttribute("href","./index.html")
+
 const userPermission = getCookieValue("User");
 
 console.log(userPermission);

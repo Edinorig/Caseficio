@@ -1,9 +1,10 @@
 import Field from "../filed-wrapper/field-wrapper.js";
 class DataCaseficio {
-    constructor(parent, propsMilk, propsCheese) {
+    constructor(parent, propsMilk, propsCheese, propsForma) {
         this.parentElement = parent;
         this.propsMilk = propsMilk;
         this.propsCheese = propsCheese;
+        this.propsForma = propsForma;
 
         this.template;
 
@@ -14,8 +15,16 @@ class DataCaseficio {
     init() {
         this.initElements();
         this.initEventListeners();
-        this.initField();
+        if (!(this.propsMilk === false)) {
+            this.initField();
+        }
+        console.log(this.propsForma);
+        if (this.propsForma !== undefined) {
+            this.initFieldForma();   
+        }
     }
+
+
 
     deleteFields() {
         const elements = document.querySelectorAll(`.wrapper-container-field`);
@@ -23,6 +32,24 @@ class DataCaseficio {
             element.remove();
         });
     }
+
+    destroy() {
+        // Remove all event listeners
+        if (this.elements.cheeseSection) {
+          this.elements.cheeseSection.removeEventListener('click', this.handleCheeseClick);
+        }
+        if (this.elements.milkSection) {
+          this.elements.milkSection.removeEventListener('click', this.handleMilkClick);
+        }
+        this.elements.submitBtn.removeEventListener('click', this.handleApplyClick);
+    
+        // Remove the template element from the parent element
+        this.parentElement.removeChild(this.template);
+    
+        // Clear the list of fields
+        this.listFileds = [];
+        this.listCheeseFields = [];
+      }
 
     initElements() {
         this.template = this.initTemplate();
@@ -41,40 +68,50 @@ class DataCaseficio {
     }
 
     initEventListeners() {
-        this.elements.selectedSection.classList.toggle('display-none', false);
+        if (this.elements.selectedSection) {
+            this.elements.selectedSection.classList.toggle('display-none', false);
+        }
 
-        this.elements.cheeseSection.addEventListener('click', e => {
-            this.deleteFields();
-            this.initFieldCheese();
+        if (this.elements.cheeseSection) {
 
-            this.listFileds = [];
 
-            this.propsMilk.forEach(e => {
-                e.value = '';
-                console.log(e.value);
+
+            this.elements.cheeseSection.addEventListener('click', e => {
+                this.deleteFields();
+                this.initFieldCheese();
+
+                this.listFileds = [];
+
+                this.propsMilk.forEach(e => {
+                    e.value = '';
+                    console.log(e.value);
+                })
+
+                console.log(this.propsMilk);
+
+                this.elements.milkSelectedSection.classList.toggle('display-none', true);
+                this.elements.cheeseSelectedSection.classList.toggle('display-none', false);
             })
+        }
+        if (this.elements.milkSection) {
+            this.elements.milkSection.addEventListener('click', () => {
+                this.deleteFields();
+                this.initField();
 
-            console.log(this.propsMilk);
+                this.listCheeseFields = [];
 
-            this.elements.milkSelectedSection.classList.toggle('display-none', true);
-            this.elements.cheeseSelectedSection.classList.toggle('display-none', false);
-        })
-        this.elements.milkSection.addEventListener('click', () => {
-            this.deleteFields();
-            this.initField();
+                this.propsCheese.forEach(e => {
+                    e.value = '';
+                    console.log(e.value);
+                })
 
-            this.listCheeseFields = [];
+                console.log(this.propsCheese);
 
-            this.propsCheese.forEach(e => {
-                e.value = '';
-                console.log(e.value);
-            })
+                this.elements.milkSelectedSection.classList.toggle('display-none', false);
+                this.elements.cheeseSelectedSection.classList.toggle('display-none', true);
+            });
+        }
 
-            console.log(this.propsCheese);
-
-            this.elements.milkSelectedSection.classList.toggle('display-none', false);
-            this.elements.cheeseSelectedSection.classList.toggle('display-none', true);
-        });
 
         this.elements.submitBtn.addEventListener('click', (e) => this.handlerApply(e));
     }
@@ -88,7 +125,23 @@ class DataCaseficio {
 
     initTemplate() {
         const parser = new DOMParser();
-        const templateString = `
+        let templateString = '';
+        
+
+        if (this.propsForma) {
+            templateString = `
+            <div class="main-content">
+                <div class="wrapper-manage-data">
+                </div>
+                <div class="wrapper-btns">
+                    <button class="submit-btn">
+                        <h3 >Submit</h3>
+                    </button>
+                </div> 
+            </div> `;
+
+        } else {
+            templateString = `
         <div class="main-content">
             <div class="nav-bar-input-data">
                 <div class="name-section" id="milk">
@@ -112,6 +165,7 @@ class DataCaseficio {
                 </button>
             </div> 
         </div> `;
+        }
         const templateElement = parser.parseFromString(templateString, 'text/html');
         return templateElement.documentElement.querySelector("body > div");
     }
@@ -136,6 +190,16 @@ class DataCaseficio {
 
             this.listCheeseFields.push(fieldWrapper);
 
+        });
+    }
+
+    initFieldForma() {
+        console.log(this.propsForma);
+        this.propsForma.forEach(propsForma => {
+            const fieldWrapper = new Field(this.elements.inputComponent, propsForma)
+            fieldWrapper.init();
+            const el = fieldWrapper.render();
+            this.elements.inputComponent.appendChild(el);
         });
     }
 
