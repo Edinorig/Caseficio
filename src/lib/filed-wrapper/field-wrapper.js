@@ -45,20 +45,13 @@ class Field {
                 this.isValid = isValid;
 
                 this.props.value = dataEntry.value;
-
-                console.log(this.props.value);
             });
         }
-
-
-
-
         if (this.props.inputType === 'selector') {
             const selectElement = this.template.querySelector('select');
             selectElement.addEventListener('change', () => {
                 const isValid = this.props.validate(selectElement.value);
 
-                console.log(isValid);
 
                 selectElement.classList.toggle('data-wrong', !isValid);
                 selectElement.classList.toggle('data-valid', isValid);
@@ -67,7 +60,6 @@ class Field {
 
                 this.props.value = selectElement.value;
 
-                console.log(this.props.value);
             });
         }
 
@@ -86,6 +78,7 @@ class Field {
 
     initEntry() {
         const { title, className, placeHolder, identificator, hideDisplay, inputType, value, required } = this.props;
+        console.log(value);
 
         if (inputType === 'text' || inputType === 'number' || inputType === 'tel' || inputType === 'email' || inputType === 'date' || inputType === 'pass') {
             return `

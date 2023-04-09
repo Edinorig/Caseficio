@@ -18,8 +18,6 @@ async function getStaggionaturaType() {
             }
         });
 
-    console.log(stagginatturaTypes);
-
     return stagginatturaTypes;
 }
 
@@ -39,8 +37,6 @@ async function getAcquirenteType() {
                 console.error(fetchResponse);
             }
         });
-
-    console.log(acquirenteType);
 
     return acquirenteType;
 }
@@ -67,24 +63,16 @@ async function getCaseficioData() {
                     dataCaseficio.numCivico = props.numCivico;
                     dataCaseficio.provincia = props.provincia;
                     dataCaseficio.via = props.via;
-                    console.log(dataCaseficio.via);
                 });
-                console.log(data);
-                console.log(status);
 
             } else {
-                console.log(data);
-                console.log(status);
-                console.error(fetchResponse);
             }
         });
 
-    console.log(dataCaseficio);
 
     return dataCaseficio;
 }
 
-console.log(getCaseficioData());
 
 
 
@@ -105,7 +93,6 @@ async function getSceltaType() {
             }
         });
 
-    console.log(getSceltaType);
 
     return getSceltaType;
 }
@@ -120,7 +107,6 @@ const getCodiceCaseficio = array => {
     return array.codiceCaseficio
 }
 
-console.log(getCodiceCaseficio(await getCaseficioData()));
 const getLatitudine = array => {
     return array.latitudine
 }
@@ -190,7 +176,7 @@ const sellForma = {
             option: await getSceltaType(),
             maxLenght: '',
             required: 'required',
-            className: 'input-data-select data-entry',
+            className: 'input-data-select data-entry see-forma-for-sell',
             placeHolder: '',
             validate: (value) => { return true },
         },

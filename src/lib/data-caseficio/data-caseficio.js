@@ -18,7 +18,6 @@ class DataCaseficio {
         if (!(this.propsMilk === false)) {
             this.initField();
         }
-        console.log(this.propsForma);
         if (this.propsForma !== undefined) {
             this.initFieldForma();   
         }
@@ -34,14 +33,16 @@ class DataCaseficio {
     }
 
     destroy() {
-        // Remove all event listeners
-        if (this.elements.cheeseSection) {
-          this.elements.cheeseSection.removeEventListener('click', this.handleCheeseClick);
-        }
-        if (this.elements.milkSection) {
-          this.elements.milkSection.removeEventListener('click', this.handleMilkClick);
-        }
+        // // Remove all event listeners
+        // if (this.elements.cheeseSection) {
+        //   this.elements.cheeseSection.removeEventListener('click', this.handleCheeseClick);
+        // }
+        // if (this.elements.milkSection) {
+        //   this.elements.milkSection.removeEventListener('click', this.handleMilkClick);
+        // }
         this.elements.submitBtn.removeEventListener('click', this.handleApplyClick);
+
+        console.log(this.template);
     
         // Remove the template element from the parent element
         this.parentElement.removeChild(this.template);
@@ -74,8 +75,6 @@ class DataCaseficio {
 
         if (this.elements.cheeseSection) {
 
-
-
             this.elements.cheeseSection.addEventListener('click', e => {
                 this.deleteFields();
                 this.initFieldCheese();
@@ -84,10 +83,7 @@ class DataCaseficio {
 
                 this.propsMilk.forEach(e => {
                     e.value = '';
-                    console.log(e.value);
                 })
-
-                console.log(this.propsMilk);
 
                 this.elements.milkSelectedSection.classList.toggle('display-none', true);
                 this.elements.cheeseSelectedSection.classList.toggle('display-none', false);
@@ -102,10 +98,8 @@ class DataCaseficio {
 
                 this.propsCheese.forEach(e => {
                     e.value = '';
-                    console.log(e.value);
                 })
 
-                console.log(this.propsCheese);
 
                 this.elements.milkSelectedSection.classList.toggle('display-none', false);
                 this.elements.cheeseSelectedSection.classList.toggle('display-none', true);
@@ -127,13 +121,12 @@ class DataCaseficio {
         const parser = new DOMParser();
         let templateString = '';
         
-
         if (this.propsForma) {
             templateString = `
             <div class="main-content">
                 <div class="wrapper-manage-data">
                 </div>
-                <div class="wrapper-btns">
+                <div class="wrapper-btn">
                     <button class="submit-btn">
                         <h3 >Submit</h3>
                     </button>
@@ -194,7 +187,6 @@ class DataCaseficio {
     }
 
     initFieldForma() {
-        console.log(this.propsForma);
         this.propsForma.forEach(propsForma => {
             const fieldWrapper = new Field(this.elements.inputComponent, propsForma)
             fieldWrapper.init();
@@ -208,13 +200,10 @@ class DataCaseficio {
 
 
         this.listFileds.forEach(filed => {
-            console.log(filed);
             isValidArray.push(filed.isValid);
         });
 
-        console.log(this.listCheeseFields);
         this.listCheeseFields.forEach(field => {
-            console.log(field);
             isValidArray.push(field.isValid);
         });
 

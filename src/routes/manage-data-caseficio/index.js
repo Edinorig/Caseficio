@@ -57,8 +57,6 @@ const handlerApply = async (e) => {
             });
         }
     });
-    console.log(milkValidation);
-    console.log(dataCaseficio.propsMilk);
 
     let cheeseValidation = [];
     dataCaseficio.propsCheese.forEach(element => {
@@ -76,12 +74,9 @@ const handlerApply = async (e) => {
         }
     });
 
-    console.log(dataCaseficio.propsCheese);
 
-    console.log(cheeseValidation);
 
     if (checkBooleanArray(milkValidation)) {
-        console.log(milkValidation);
 
 
         const latteUsata = dataCaseficio.propsMilk[0].value;
@@ -99,26 +94,16 @@ const handlerApply = async (e) => {
             uidCaseficio: uidCaseficio
         }
 
-        console.log(milkData);
         await UtilFetch.postData('../../utils/php/insertMilk.php', milkData)
             .then(fetchResponse => {
-                console.log("ok");
                 const { status, data } = fetchResponse;
                 if (status >= 200 && status < 300) {
-                    console.log(data);
-                    console.log("ok");
-                    console.log(status);
                 } else {
-                    console.log("Problems");
-                    console.log(data);
-                    console.log(status);
                 }
             });
 
-        console.log("ok");
 
     } else if (checkBooleanArray(cheeseValidation)) {
-        console.log("Cheese is ready");
 
         const quantita = dataCaseficio.propsCheese[0].value;
         const staggionatura = dataCaseficio.propsCheese[1].value;
@@ -152,19 +137,11 @@ const handlerApply = async (e) => {
             number.push(progressiveNumver)
 
 
-            console.log(cheeseData);
             await UtilFetch.postData('../../utils/php/insertCheese.php', cheeseData)
                 .then(fetchResponse => {
-                    console.log("ok");
                     const { status, data } = fetchResponse;
                     if (status >= 200 && status < 300) {
-                        console.log(data);
-                        console.log("ok");
-                        console.log(status);
                     } else {
-                        console.log("Problems");
-                        console.log(data);
-                        console.log(status);
                     }
                 });
 
@@ -188,20 +165,19 @@ const handlerApply = async (e) => {
 
         // Check if the child element already exists in the parent element before appending it
 
-        console.log(showDataT);
 
-        showDataT.forEach(el=>{
-            console.log(el);
+        showDataT.forEach(el => {
             showCodice.removeChild(el)
         })
 
         showCodice.appendChild(temp);
-        console.log(number);
 
+
+        // let temp1 = [1,2,4,5,2,4,43,2,4,234,234,23,423,423,42,34,234,,134,234];
+
+        // const [minimum, maximum] = findMinMax(temp1);
         const [min, max] = findMinMax(number);
         let codiceTemp = codiceCaseficioTemp + "/" + currentDatetime + "/" + "(" + min + "-" + max + ")";
-        console.log(min);
-        console.log(max);
 
         let showData = document.querySelector('.show-data');
         showData.value = codiceTemp;
@@ -219,7 +195,6 @@ logOutBtn.setAttribute("href", "../index.html");
 selectedInputBtn.classList.toggle('display-none', false)
 
 inputdataBtn.addEventListener('click', e => {
-    console.log("Clicked");
 })
 
 
@@ -240,18 +215,20 @@ function findMinMax(numbers) {
         return undefined;
     }
 
-    let min = numbers[0];
-    let max = numbers[0];
+    let min = parseInt(numbers[0]);
+    let max = parseInt(numbers[0]);
 
     for (let i = 1; i < numbers.length; i++) {
-        if (numbers[i] < min) {
-            min = numbers[i];
-        } else if (numbers[i] > max) {
-            max = numbers[i];
+        let num = parseInt(numbers[i]);
+        if (num < min) {
+            min = num;
+        } else if (num > max) {
+            max = num;
         }
     }
 
     return [min, max];
 }
+
 
 

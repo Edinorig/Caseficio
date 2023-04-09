@@ -16,7 +16,6 @@ const props = {
 
 
 const logWrapper = new LogWrapper(wrapper.component, loginInput.list);
-console.log(logWrapper.props);
 
 logWrapper.init();
 
@@ -40,9 +39,7 @@ const handlerApply = async (e) => {
     }
 
     if (checkBooleanArray(logWrapper.isValid())) {
-        console.log("success");
-        console.log(logData);
-
+                
         let userPermission;
         let userId;
         let uid;
@@ -68,15 +65,12 @@ const handlerApply = async (e) => {
             });
 
         if (userPermission === undefined) {
-            console.log(fiedsList);
-            fiedsList.forEach(filed => {
-            console.log(fiedsList);
-            filed.classList.remove('data-valid', true);
+                        fiedsList.forEach(filed => {
+                        filed.classList.remove('data-valid', true);
             filed.classList.add('data-wrong', true);
         });
         } else {
-            console.log(userPermission);
-            createCookie("User", userPermission);
+                        createCookie("User", userPermission);
             createCookie("UidUser", uid);
             createCookie("idx",userId);
             setIdInUrl("idx",userId);

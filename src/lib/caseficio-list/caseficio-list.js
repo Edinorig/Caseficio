@@ -94,11 +94,9 @@ class CaseficioList {
 
     initField() {
 
-        console.log(this.props);
 
         let fieldString = '';
         this.props.forEach(element => {
-            console.log(element);
             if (this.propsForma) {
                 fieldString += `
                 <div class="row-data" uidcaseficio="${element.uid}">
@@ -108,7 +106,7 @@ class CaseficioList {
                   </div>`;
             } else {
                 fieldString += `
-          <div class="row-data" ="${element.uid}">
+          <div class="row-data" uidcaseficio="${element.uid}">
             <div class="cell">${element.nome}</div>
             <div class="divide-line-list-casefici"></div>
             <div class="cell">${element.provincia}</div>

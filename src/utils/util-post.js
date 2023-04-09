@@ -17,8 +17,7 @@ async function getStaggionaturaType() {
             }
         });
 
-    console.log(stagginatturaTypes);
-
+    
     return stagginatturaTypes;
 }
 
@@ -39,8 +38,7 @@ async function getSceltaType() {
             }
         });
 
-    console.log(getSceltaType);
-
+    
     return getSceltaType;
 }
 

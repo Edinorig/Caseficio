@@ -16,10 +16,8 @@ header.init();
 
 const showDataCaseficio = new ShowDataCaseficio(wrapper.showDataCaseficio,dataCaseficio.list);
 showDataCaseficio.init();
-console.log(showDataCaseficio);
 
 const logo = document.querySelector('.logo');
-console.log(logo);
 logo.addEventListener('click', e => {
     window.location = "../index.html";
 })

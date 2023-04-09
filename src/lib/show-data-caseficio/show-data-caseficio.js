@@ -44,8 +44,7 @@ class ShowDataCaseficio {
     }
 
     initField() {
-        console.log(this.props);
-        this.props.forEach(props => {
+                this.props.forEach(props => {
             const fieldWrapper = new Field(this.elements.inputComponent, props)
             fieldWrapper.init();
             const el = fieldWrapper.render();

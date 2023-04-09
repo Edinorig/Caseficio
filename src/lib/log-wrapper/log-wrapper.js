@@ -71,8 +71,7 @@ class LogWrapper {
 
 
         this.listFileds.forEach(filed => {
-            console.log(filed);
-            isValidArray.push(filed.isValid);
+                        isValidArray.push(filed.isValid);
         });
         return isValidArray;
     }

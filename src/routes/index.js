@@ -19,8 +19,7 @@ const props = {
 };
 
 if (checkCookieExists('User')) {
-    console.log("Function alreade exist");
-} else {
+    } else {
     createCookie("User", "null");
 }
 
@@ -31,8 +30,6 @@ const logOut = document.querySelector('.nav-bar-name-logout ');
 logOut.setAttribute("href","./index.html")
 
 const userPermission = getCookieValue("User");
-
-console.log(userPermission);
 
 if (userPermission === 'Consorzio' || userPermission === 'User'|| userPermission === 'null') {
 
@@ -50,51 +47,41 @@ if (userPermission === 'Consorzio' || userPermission === 'User'|| userPermission
             inputCaseficio: searchInput
         }
 
-        
-
         let dataStatus;
         await UtilFetch.postData('../utils/php/getCaseficioDataFromSearch.php', inputData)
             .then(fetchResponse => {
                 const { status, data } = fetchResponse;
                 if (status >= 200 && status < 300) {
                     dataStatus = data;
-                    console.log(dataStatus);
-                } else {
-                    console.log(dataStatus);
-                    console.log(data);
-                }
+                                    } else {
+                                                        }
             });
+
+        // destroy the existing caseficioList if it exists
+        if (caseficioList) {
+            caseficioList.destroy();
+            caseficioList = null;
+        }
+
         if (dataStatus != 0) {
             caseficioList = new CaseficioList(wrapper.caseficioList, dataStatus);
             caseficioList.init();
         }
-        else { // check if instance exists and has destroy method
-            caseficioList.destroy(); // call destroy method to remove event listeners and clear DOM elements
-            caseficioList = null; // set variable to null to indicate that instance is destroyed
-        }
-
-        console.log(caseficioList);
-
 
         const row = document.querySelectorAll('.row-data');
-
     
         row.forEach(element => {
             element.addEventListener('click', e => {
-                console.log("Cklicked");
-                caseficioList.destroy();
-                console.log(e);
-                let temp = element.getAttribute("uidcaseficio");
-                setIdInUrl("uidcaseficio",temp);
+                                if (caseficioList) {
+                    caseficioList.destroy();
+                    caseficioList = null;
+                }
+                                let temp = element.getAttribute("uidcaseficio");
+                                setIdInUrl("uidcaseficio",temp);
                 createCookie("SelectedCaseficio", temp);
-                // const showDataCaseficio = new ShowDataCaseficio(wrapper.showDataCaseficio,dataCaseficio.list);
-                // showDataCaseficio.init();
                 window.location = "./showDataCaseficio/index.html";
             })
         });
-
-
-
 
     }
 
@@ -106,20 +93,16 @@ if (userPermission === 'Caseficio') {
     }
     let uidCaseficio = '';
     let codiceCaseficio = '';
-    console.log(uidUser);
-    await UtilFetch.postData('../utils/php/getCaseficioData.php', uidUser)
+        await UtilFetch.postData('../utils/php/getCaseficioData.php', uidUser)
         .then(fetchResponse => {
             const { status, data } = fetchResponse;
             if (status >= 200 && status < 300) {
-                console.log(data);
-                data.forEach(element => {
+                                data.forEach(element => {
                     uidCaseficio = element.uid;
                     codiceCaseficio = element.codiceCaseficio;
                 });
             } else {
-                console.log(data);
-                console.log(status);
-            }
+                                            }
         });
 
     createCookie("UidCaseficio", uidCaseficio);
